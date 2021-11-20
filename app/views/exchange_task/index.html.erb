@@ -1,0 +1,12 @@
+<h1>ExchangeTask#index</h1>
+<table>
+  <tbody>
+    <% @jobs.each do |job|  %>
+      <tr>
+        <td><%= job.args[0] %></td>
+        <td><%= job.args[1] %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= link_to 'New Exchange Task', exchange_tasks_new_path %>

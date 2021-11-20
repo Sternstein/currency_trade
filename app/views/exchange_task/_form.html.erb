@@ -1,0 +1,25 @@
+<%= form_with url: "/exchange_tasks", method: :post do |form| %>
+  <div class="field">
+    <%= form.label :account_id1 %>
+    <%= form.select :account_id1, accounts %>
+  </div>
+
+  <div class="field">
+    <%= form.label :account_id2 %>
+    <%= form.select :account_id2, accounts %>
+  </div>
+
+  <div class="field">
+    <%= form.label :amount %>
+    <%= form.text_field :amount %>
+  </div>
+
+  <div class="field">
+    <%= form.label :condition %>
+    <%= form.select :condition, conditions %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
