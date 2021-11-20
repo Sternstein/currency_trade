@@ -1,6 +1,6 @@
 class AccountsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_account, only: %i[ show edit update destroy ]
+  before_action :set_account, only: %i[ show edit update destroy recharge recharge_it]
   # GET /accounts or /accounts.json
   def index
     @accounts = current_user.accounts.all
@@ -31,6 +31,26 @@ class AccountsController < ApplicationController
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @account.errors, status: :unprocessable_entity }
       end
+    end
+  end
+  
+  def recharge
+  end 
+
+  def recharge_it
+    new_amount = BigDecimal(params['recharge'])
+    if new_amount > BigDecimal(0)
+      current_amount = @account.amount
+      @account.amount = current_amount + new_amount
+      if @account.save
+        redirect_to accounts_path
+      else
+        flash[:alert] = "Unexpected error!"
+        render :recharge
+      end
+    else
+      flash[:alert] = "Amount of recharge should be more than zero!"
+      render :recharge
     end
   end
 

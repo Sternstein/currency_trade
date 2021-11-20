@@ -1,0 +1,10 @@
+<%= form_with url: "/recharge/#{@account.id}", method: :post do |form| %>
+  <div class="field">
+    <%= form.label :recharge %>
+    <%= form.text_field :recharge %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
