@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get 'exchange_tasks/delete/:jid', to: 'exchange_task#delete', as: 'exchange_delete'
   post 'exchange_tasks', to: 'exchange_task#create'
   get 'recharge/:id', to: 'accounts#recharge', as: 'recharge'
-  post 'recharge/:id', to: 'accounts#recharge_it'
+  post 'recharge/:id', to: 'accounts#recharge_it', as: 'recharge_it'
 
   resources :accounts
   devise_for :users

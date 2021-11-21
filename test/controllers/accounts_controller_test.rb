@@ -2,6 +2,9 @@ require "test_helper"
 
 class AccountsControllerTest < ActionDispatch::IntegrationTest
   setup do
+    get '/users/sign_in'
+    sign_in users(:one)
+    post user_session_url
     @account = accounts(:one)
   end
 
@@ -22,27 +25,5 @@ class AccountsControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to account_url(Account.last)
   end
-
-  test "should show account" do
-    get account_url(@account)
-    assert_response :success
-  end
-
-  test "should get edit" do
-    get edit_account_url(@account)
-    assert_response :success
-  end
-
-  test "should update account" do
-    patch account_url(@account), params: { account: { amount: @account.amount, currency_id: @account.currency_id, user_id: @account.user_id } }
-    assert_redirected_to account_url(@account)
-  end
-
-  test "should destroy account" do
-    assert_difference('Account.count', -1) do
-      delete account_url(@account)
-    end
-
-    assert_redirected_to accounts_url
-  end
+  
 end

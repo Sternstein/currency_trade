@@ -1,11 +1,13 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  description: MyString
-  flag: MyString
+  id: 1
+  name: 'USD'
+  description: "United State Dollar"
+  flag: "USD"
 
 two:
-  name: MyString
-  description: MyString
-  flag: MyString
+  id: 2
+  name: 'RUB'
+  description: "Russian Ruble"
+  flag: "RUB"

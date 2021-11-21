@@ -46,11 +46,11 @@ class AccountsController < ApplicationController
         redirect_to accounts_path
       else
         flash[:alert] = "Unexpected error!"
-        render :recharge
+        render :recharge, status: :unprocessable_entity
       end
     else
       flash[:alert] = "Amount of recharge should be more than zero!"
-      render :recharge
+      render :recharge, status: :unprocessable_entity
     end
   end
 
@@ -84,6 +84,6 @@ class AccountsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def account_params
-      params.require(:account).permit(:currency_id, :amount)
+      params.require(:account).permit(:currency_id, :amount, :recharge)
     end
 end
