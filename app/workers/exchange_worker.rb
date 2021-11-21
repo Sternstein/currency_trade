@@ -1,7 +1,7 @@
 class ExchangeWorker
   include Sidekiq::Worker
 
-  def perform(user_id, account_id1, account_id2, amount, rate_for_buy)
+  def perform(user_id, account_id1, account_id2, amount, rate_for_exchange, condition, date_until_string)
     account1 = Account.find_by(id: account_id1)
     account2 = Account.find_by(id: account_id2) 
     amount1 = account1.amount
@@ -20,13 +20,20 @@ class ExchangeWorker
     rate_s = rate_f.to_s
     amount_currency = BigDecimal(amount) * BigDecimal(rate_s)
     amount_on_first = amount1 - BigDecimal(amount)
-    if amount_currency > BigDecimal(0) and amount_on_first > 0 and rate_for_buy
+    if condition == 1
+      condition_for_exchange = BigDecimal(rate_for_exchange) >= BigDecimal(rate_s)
+    else
+      condition_for_exchange = BigDecimal(rate_for_exchange) <= BigDecimal(rate_s)
+    end
+    date_time_now = DateTime.now
+    date_until = date_until_string.to_datetime
+    if amount_currency > BigDecimal(0) and amount_on_first >= BigDecimal(0) and condition_for_exchange and date_until > date_time_now
       account2.amount = amount2 + amount_currency
       account1.amount = amount1 - BigDecimal(amount)
       account1.save()
       account2.save()
-    else
-      ExchangeWorker.perform_at(5.minutes.from_now, user_id, account_id1, account_id2, amount)
+    elsif date_until > date_time_now
+      ExchangeWorker.perform_at(30.seconds.from_now, user_id, account_id1, account_id2, amount, rate_for_exchange, condition, date_until_string)
     end
   end
 end

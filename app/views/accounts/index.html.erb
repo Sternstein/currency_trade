@@ -5,7 +5,6 @@
 <table>
   <thead>
     <tr>
-      <th>User</th>
       <th>Currency</th>
       <th>Amount</th>
       <th></th>
@@ -15,8 +14,7 @@
   <tbody>
     <% @accounts.each do |account| %>
       <tr>
-        <td><%= account.user_id %></td>
-        <td><%= account.currency_id %></td>
+        <td><%= account.currency_name %></td>
         <td><%= account.amount %></td>
         <td><%= link_to 'Recharge', recharge_path(account) %></td>
       </tr>

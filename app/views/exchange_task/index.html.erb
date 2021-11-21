@@ -5,6 +5,12 @@
       <tr>
         <td><%= job.args[0] %></td>
         <td><%= job.args[1] %></td>
+        <td><%= job.args[2] %></td>
+        <td><%= job.args[3] %></td>
+        <td><%= job.args[4] %></td>
+        <td><%= job.args[5] %></td>
+        <td><%= job.args[6] %></td>
+        <td><%= link_to 'Delete', exchange_delete_path(job.jid) %></td>
       </tr>
     <% end %>
   </tbody>

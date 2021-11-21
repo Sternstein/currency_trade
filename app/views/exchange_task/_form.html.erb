@@ -11,14 +11,23 @@
 
   <div class="field">
     <%= form.label :amount %>
-    <%= form.text_field :amount %>
+    <%= form.number_field :amount, step: :any %>
+  </div>
+
+  <div class="field">
+    <%= form.label :rate_limit %>
+    <%= form.number_field :rate_limit, step: :any %>
   </div>
 
   <div class="field">
     <%= form.label :condition %>
     <%= form.select :condition, conditions %>
   </div>
-
+  <div class="field">
+    <%= form.label :date_until %>
+    <%= form.datetime_select(:date_until) %>
+  </div>
+  
   <div class="actions">
     <%= form.submit %>
   </div>
