@@ -1,24 +1,19 @@
-# README
+# Currency Trade
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Test application, where user can exchange currency between accounts. Use redis for background tasks.
 
-Things you may want to cover:
+**Requirements**
 
-* Ruby version
+ruby 3.0.2
+rails 6.1.4
+redis-server
+postgresql
+gem 'bundler'
 
-* System dependencies
+Installation guide
 
-* Configuration
+1) Install all gems:
+`bundle install`
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+2) Start application:
+`foreman start -f Development.proc`
